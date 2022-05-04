@@ -2,10 +2,13 @@ package a2;
 
 import static org.lwjgl.opengl.GL30.*;
 
+import ehrenhoefer.opengl.VaoProgram;
 import lenz.opengl.AbstractOpenGLBase;
 import lenz.opengl.ShaderProgram;
 
 public class Aufgabe2 extends AbstractOpenGLBase {
+
+	VaoProgram triangle1VAO;
 
 	public static void main(String[] args) {
 		new Aufgabe2().start("CG Aufgabe 2", 700, 700);
@@ -18,16 +21,13 @@ public class Aufgabe2 extends AbstractOpenGLBase {
 		glUseProgram(shaderProgram.getId());
 
 		// Koordinaten, VAO, VBO, ... hier anlegen und im Grafikspeicher ablegen
-		float[] dreiecksKoordinaten = new float[]{-0.5f, -0.5f, 0.5f, -0.5f, 0, 0.5f};
-
-		int vaoId = glGenVertexArrays();
-		glBindVertexArray(vaoId);
-
-		int vboId = glGenBuffers();
-		glBindBuffer(GL_ARRAY_BUFFER, vboId);
-		glBufferData(GL_ARRAY_BUFFER, dreiecksKoordinaten, GL_STATIC_DRAW);
-		glVertexAttribPointer(0, 2, GL_FLOAT, false, 0, 0);
-		glEnableVertexAttribArray(0);
+		float[] triangleCoordinates = new float[]{-0.4f, -0.4f, 0f, 0.4f, 0.4f, -0.4f};
+		float[] redTones = new float[]{0f, 0.5f, 1f};
+		triangle1VAO = new VaoProgram();
+		triangle1VAO.createVbo(0, triangleCoordinates, 2);
+		triangle1VAO.addToPointCount(3);
+		triangle1VAO.createVbo(1, redTones, 1);
+		//triangle1VAO.createVbo(triangleCoordinates2);
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class Aufgabe2 extends AbstractOpenGLBase {
 		glClear(GL_COLOR_BUFFER_BIT); // Zeichenfläche leeren
 
 		// hier vorher erzeugte VAOs zeichnen
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glDrawArrays(GL_TRIANGLES, 0, triangle1VAO.getPointCount());
 	}
 
 	@Override
