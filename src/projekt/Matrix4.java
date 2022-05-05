@@ -5,8 +5,15 @@ package projekt;
 //Matrix4 m = new Matrix4().scale(5).translate(0,1,0).rotateX(0.5f);
 public class Matrix4 {
 
+	public float[][] items;
+
 	public Matrix4() {
-		// TODO mit der Identitätsmatrix initialisieren
+		items = new float[][] {
+				{1, 0, 0, 0},
+				{0, 1, 0, 0},
+				{0, 0, 1, 0},
+				{0, 0, 0, 1},
+		};
 	}
 
 	public Matrix4(Matrix4 copy) {
@@ -18,13 +25,27 @@ public class Matrix4 {
 	}
 
 	public Matrix4 multiply(Matrix4 other) {
-		// TODO hier Matrizenmultiplikation "this = other * this" einfügen
+		// Code strongly inspired by https://www.baeldung.com/java-matrix-multiplication
+		float[][] firstMatrix = other.items;
+		float[][] secondMatrix = this.items;
+
+		float[][] result = new float[firstMatrix.length][secondMatrix[0].length];
+		for (int row = 0; row < result.length; row++) {
+			for (int col = 0; col < result[row].length; col++) {
+				result[row][col] = multiplyMatricesCell(firstMatrix, secondMatrix, row, col);
+			}
+		}
+
+		this.items = result;
 		return this;
 	}
 
 	public Matrix4 translate(float x, float y, float z) {
-		// TODO Verschiebung um x,y,z zu this hinzufügen
-		return this;
+		Matrix4 translateMatrix = new Matrix4();
+		translateMatrix.items[3][0] = x;
+		translateMatrix.items[3][1] = y;
+		translateMatrix.items[3][2] = z;
+		return multiply(translateMatrix);
 	}
 
 	public Matrix4 scale(float uniformFactor) {
@@ -55,5 +76,26 @@ public class Matrix4 {
 	public float[] getValuesAsArray() {
 		// TODO hier Werte in einem Float-Array mit 16 Elementen (spaltenweise gefüllt) herausgeben
 		return null;
+	}
+
+	/*
+	 * CLASS UTILS
+	 */
+	public void printMatrix () {
+		System.out.println("Matrix: ");
+		for (int y = 0; y < items.length; y++) {
+			for (int x = 0; x < items.length; x++) {
+				System.out.print(items[x][y]);
+			}
+			System.out.println();
+		}
+	}
+
+	private float multiplyMatricesCell(float[][] firstMatrix, float[][] secondMatrix, int row, int col) {
+		float cell = 0;
+		for (int i = 0; i < secondMatrix.length; i++) {
+			cell += firstMatrix[row][i] * secondMatrix[i][col];
+		}
+		return cell;
 	}
 }
