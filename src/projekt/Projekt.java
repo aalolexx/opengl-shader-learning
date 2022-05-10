@@ -6,10 +6,14 @@ import static org.lwjgl.opengl.GL20.*;
 import ehrenhoefer.opengl.VaoProgram;
 import lenz.opengl.AbstractOpenGLBase;
 import lenz.opengl.ShaderProgram;
+import org.lwjgl.BufferUtils;
+
+import java.nio.FloatBuffer;
 
 public class Projekt extends AbstractOpenGLBase {
 
 	VaoProgram triangle1VAO;
+	ShaderProgram shaderProgram;
 
 	public static void main(String[] args) {
 		new Projekt().start("CG Projekt", 700, 700);
@@ -17,7 +21,7 @@ public class Projekt extends AbstractOpenGLBase {
 
 	@Override
 	protected void init() {
-		ShaderProgram shaderProgram = new ShaderProgram("projekt");
+		shaderProgram = new ShaderProgram("projekt");
 		glUseProgram(shaderProgram.getId());
 
 		// Koordinaten, VAO, VBO, ... hier anlegen und im Grafikspeicher ablegen
@@ -30,30 +34,20 @@ public class Projekt extends AbstractOpenGLBase {
 
 		glEnable(GL_DEPTH_TEST); // z-Buffer aktivieren
 		glEnable(GL_CULL_FACE); // backface culling aktivieren
-
-		// Matrix Tests
-		Matrix4 m1 = new Matrix4();
-		m1.translate(1,2,3);
-		m1.printMatrix();
-
-		Matrix4 m2 = new Matrix4();
-		m2.translate(1,2,3);
-		m2.printMatrix();
-
-		m2.multiply(m1);
-		m2.printMatrix();
 	}
 
 	@Override
 	public void update() {
-		// Transformation durchführen (Matrix anpassen)
+		Matrix4 transformMatrix = new Matrix4();
+		transformMatrix.translate(0.5f,0, 0);
+		//transformMatrix.printMatrix();
+		int matrix_loc = glGetUniformLocation(shaderProgram.getId(), "transformMatrix");
+		glUniformMatrix4fv(matrix_loc, true,transformMatrix.getValuesAsArray());
 	}
 
 	@Override
 	protected void render() {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-		// TODO Matrix an Shader übertragen
 		glDrawArrays(GL_TRIANGLES, 0, triangle1VAO.getPointCount());
 	}
 

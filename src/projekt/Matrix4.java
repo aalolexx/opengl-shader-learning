@@ -42,9 +42,9 @@ public class Matrix4 {
 
 	public Matrix4 translate(float x, float y, float z) {
 		Matrix4 translateMatrix = new Matrix4();
-		translateMatrix.items[3][0] = x;
-		translateMatrix.items[3][1] = y;
-		translateMatrix.items[3][2] = z;
+		translateMatrix.items[0][3] = x;
+		translateMatrix.items[1][3] = y;
+		translateMatrix.items[2][3] = z;
 		return multiply(translateMatrix);
 	}
 
@@ -74,8 +74,15 @@ public class Matrix4 {
 	}
 
 	public float[] getValuesAsArray() {
-		// TODO hier Werte in einem Float-Array mit 16 Elementen (spaltenweise gefüllt) herausgeben
-		return null;
+		float[] matrixAsRow = new float[16];
+		int i = 0;
+		for (float[] column : items) {
+			for (float item : column) {
+				matrixAsRow[i] = item;
+				i++;
+			}
+		}
+		return matrixAsRow;
 	}
 
 	/*
@@ -85,7 +92,7 @@ public class Matrix4 {
 		System.out.println("Matrix: ");
 		for (int y = 0; y < items.length; y++) {
 			for (int x = 0; x < items.length; x++) {
-				System.out.print(items[x][y]);
+				System.out.print(items[x][y] + " | ");
 			}
 			System.out.println();
 		}
