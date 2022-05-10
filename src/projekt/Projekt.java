@@ -14,6 +14,7 @@ public class Projekt extends AbstractOpenGLBase {
 
 	VaoProgram triangle1VAO;
 	ShaderProgram shaderProgram;
+	double counter = 0;
 
 	public static void main(String[] args) {
 		new Projekt().start("CG Projekt", 700, 700);
@@ -38,8 +39,12 @@ public class Projekt extends AbstractOpenGLBase {
 
 	@Override
 	public void update() {
+		counter += 0.02;
+		float translateValue = (float) (Math.sin(counter) * 0.5);
+
 		Matrix4 transformMatrix = new Matrix4();
-		transformMatrix.translate(0.5f,0, 0);
+		transformMatrix.translate(translateValue, 0, 0);
+		transformMatrix.rotateZ(translateValue);
 		//transformMatrix.printMatrix();
 		int matrix_loc = glGetUniformLocation(shaderProgram.getId(), "transformMatrix");
 		glUniformMatrix4fv(matrix_loc, true,transformMatrix.getValuesAsArray());

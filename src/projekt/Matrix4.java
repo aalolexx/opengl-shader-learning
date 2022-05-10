@@ -59,18 +59,30 @@ public class Matrix4 {
 	}
 
 	public Matrix4 rotateX(float angle) {
-		// TODO Rotation um X-Achse zu this hinzufügen
-		return this;
+		Matrix4 rotationMatrix = new Matrix4();
+		rotationMatrix.items[1][1] = (float) Math.cos(angle);
+		rotationMatrix.items[1][2] = (float) (Math.sin(angle) * -1);
+		rotationMatrix.items[2][1] = (float) Math.sin(angle);
+		rotationMatrix.items[2][2] = (float) Math.cos(angle);
+		return multiply(rotationMatrix);
 	}
 
 	public Matrix4 rotateY(float angle) {
-		// TODO Rotation um Y-Achse zu this hinzufügen
-		return this;
+		Matrix4 rotationMatrix = new Matrix4();
+		rotationMatrix.items[0][0] = (float) Math.cos(angle);
+		rotationMatrix.items[0][2] = (float) (Math.sin(angle) * -1);
+		rotationMatrix.items[2][0] = (float) Math.sin(angle);
+		rotationMatrix.items[2][2] = (float) Math.cos(angle);
+		return multiply(rotationMatrix);
 	}
 
 	public Matrix4 rotateZ(float angle) {
-		// TODO Rotation um Z-Achse zu this hinzufügen
-		return this;
+		Matrix4 rotationMatrix = new Matrix4();
+		rotationMatrix.items[0][0] = (float) Math.cos(angle);
+		rotationMatrix.items[0][1] = (float) (Math.sin(angle) * -1);
+		rotationMatrix.items[1][0] = (float) Math.sin(angle);
+		rotationMatrix.items[1][1] = (float) Math.cos(angle);
+		return multiply(rotationMatrix);
 	}
 
 	public float[] getValuesAsArray() {
