@@ -1,16 +1,17 @@
 #version 330
-layout(location=0) in vec2 pointsFromJava;
-layout(location=1) in float redTonesFromJava;
-
-out vec2 pixelPos;
-out float redTone;
+layout(location=0) in vec3 pointsFromJava;
+layout(location=1) in vec3 colorsFromJava;
 
 uniform mat4 transformMatrix;
+out vec3 faceColor;
 
 void main() {
-    redTone = redTonesFromJava;
-    //Transform here
-    vec4 finalPos = transformMatrix * vec4(pointsFromJava, 0.0, 1.0);
-    pixelPos = vec2(finalPos);
+    // Apply Transofmation Matrix
+    vec4 finalPos = transformMatrix * vec4(pointsFromJava, 1.0);
+
+    // Out color for fragment shader
+    faceColor = colorsFromJava;
+
+    // Out Position
     gl_Position = vec4(finalPos);
 }
