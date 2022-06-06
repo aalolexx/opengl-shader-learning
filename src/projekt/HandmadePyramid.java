@@ -34,12 +34,12 @@ public class HandmadePyramid {
         float[][] frontFace = new float[][] {
                 {-0.4f, -0.4f, -0.4f},
                 {0.4f, -0.4f, -0.4f},
-                {0f, 0.4f, 0f}
+                {0, 0.4f, 0}
         };
         float[][] rightFace = new float[][] {
                 {0.4f, -0.4f, -0.4f},
                 {0f, -0.4f, 0.4f},
-                {0f, 0.4f, 0f}
+                {0f, 0.4f, 0f},
         };
         float[][] leftFace = new float[][] {
                 {0f, -0.4f, 0.4f},
