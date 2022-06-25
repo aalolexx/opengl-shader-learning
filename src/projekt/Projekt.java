@@ -22,15 +22,6 @@ public class Projekt extends AbstractOpenGLBase {
 		shaderProgram = new ShaderProgram("projekt");
 		glUseProgram(shaderProgram.getId());
 
-
-		// Koordinaten, VAO, VBO, ... hier anlegen und im Grafikspeicher ablegen
-		/*float[] triangleCoordinates = new float[]{-0.4f, -0.4f, 0.4f, -0.4f, 0f, 0.4f};
-		float[] redTones = new float[]{0f, 0.5f, 1f};
-		triangle1VAO = new VaoProgram();
-		triangle1VAO.createVbo(0, triangleCoordinates, 2);
-		triangle1VAO.addToPointCount(3);
-		triangle1VAO.createVbo(1, redTones, 1);*/
-
 		pyramid = new HandmadePyramid(shaderProgram);
 
 		glEnable(GL_DEPTH_TEST); // z-Buffer aktivieren

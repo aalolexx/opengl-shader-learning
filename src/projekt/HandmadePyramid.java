@@ -11,9 +11,6 @@ public class HandmadePyramid {
     public VaoProgram vaoProgram;
     public ShaderProgram shaderProgram;
 
-    // All Triangle Coordinate -> Pyramid is made of 4 triangles
-    public float[][] trianglesCoordinates = new float[4][];
-
     public HandmadePyramid(ShaderProgram shaderProgram) {
         this.shaderProgram = shaderProgram;
         vaoProgram = new VaoProgram();
@@ -107,8 +104,9 @@ public class HandmadePyramid {
 
     public void rotateAbsolut (float deg) {
         Matrix4 transformMatrix = new Matrix4();
-        transformMatrix.rotateY(deg);
+        //transformMatrix.rotateY(deg);
         transformMatrix.rotateX(deg);
+        transformMatrix.rotateZ(deg);
         int matrix_loc = glGetUniformLocation(shaderProgram.getId(), "transformMatrix");
         glUniformMatrix4fv(matrix_loc, true,transformMatrix.getValuesAsArray());
     }
