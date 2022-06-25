@@ -1,19 +1,12 @@
 package projekt;
 
-import ehrenhoefer.opengl.VaoProgram;
-import ehrenhoefer.opengl.VectorUtils;
+import projekt.util.Object3D;
+import projekt.util.VectorUtils;
 import lenz.opengl.ShaderProgram;
 
-import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL20.*;
-
-public class HandmadePyramid {
-    public VaoProgram vaoProgram;
-    public ShaderProgram shaderProgram;
-
+public class HandmadePyramid extends Object3D {
     public HandmadePyramid(ShaderProgram shaderProgram) {
-        this.shaderProgram = shaderProgram;
-        vaoProgram = new VaoProgram();
+        super(shaderProgram);
         init();
     }
 
@@ -92,22 +85,5 @@ public class HandmadePyramid {
                 leftNormal[0], leftNormal[1], leftNormal[2],
         };
         vaoProgram.createVbo(1, pyramideNormals, 3);
-    }
-
-    /* ****************
-     * RENDER FUNCTIONS
-     * ****************/
-
-    public void draw() {
-        glDrawArrays(GL_TRIANGLES, 0, vaoProgram.getPointCount());
-    }
-
-    public void rotateAbsolut (float deg) {
-        Matrix4 transformMatrix = new Matrix4();
-        //transformMatrix.rotateY(deg);
-        transformMatrix.rotateX(deg);
-        transformMatrix.rotateZ(deg);
-        int matrix_loc = glGetUniformLocation(shaderProgram.getId(), "transformMatrix");
-        glUniformMatrix4fv(matrix_loc, true,transformMatrix.getValuesAsArray());
     }
 }

@@ -2,7 +2,7 @@ package a2;
 
 import static org.lwjgl.opengl.GL30.*;
 
-import ehrenhoefer.opengl.VaoProgram;
+import projekt.util.VaoProgram;
 import lenz.opengl.AbstractOpenGLBase;
 import lenz.opengl.ShaderProgram;
 
