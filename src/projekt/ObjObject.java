@@ -92,20 +92,20 @@ public class ObjObject extends Object3D {
     public float[] getCoordinatesArray () {
         ArrayList<Float> allCoordinates = new ArrayList<>();
         for (int i = 0 ; i < facesVertices.size(); i++) {
-            Vector3D a = vertices.get((int) (facesVertices.get(i).x) - 1);
-            allCoordinates.add(a.x);
-            allCoordinates.add(a.y);
-            allCoordinates.add(a.z);
+            Vector3D c = vertices.get((int) (facesVertices.get(i).z) - 1);
+            allCoordinates.add(c.x);
+            allCoordinates.add(c.y);
+            allCoordinates.add(c.z);
 
             Vector3D b = vertices.get((int) (facesVertices.get(i).y) - 1);
             allCoordinates.add(b.x);
             allCoordinates.add(b.y);
             allCoordinates.add(b.z);
 
-            Vector3D c = vertices.get((int) (facesVertices.get(i).z) - 1);
-            allCoordinates.add(c.x);
-            allCoordinates.add(c.y);
-            allCoordinates.add(c.z);
+            Vector3D a = vertices.get((int) (facesVertices.get(i).x) - 1);
+            allCoordinates.add(a.x);
+            allCoordinates.add(a.y);
+            allCoordinates.add(a.z);
         }
         return listToFloatArray(allCoordinates);
     }
@@ -113,20 +113,20 @@ public class ObjObject extends Object3D {
     public float[] getNormalsArray () {
         ArrayList<Float> allCoordinates = new ArrayList<>();
         for (int i = 0 ; i < facesNormals.size(); i++) {
-            Vector3D a = normals.get((int) (facesNormals.get(i).x) - 1);
-            allCoordinates.add(a.x);
-            allCoordinates.add(a.y);
-            allCoordinates.add(a.z);
+            Vector3D c = normals.get((int) (facesNormals.get(i).z) - 1);
+            allCoordinates.add(c.x);
+            allCoordinates.add(c.y);
+            allCoordinates.add(c.z);
 
             Vector3D b = normals.get((int) (facesNormals.get(i).y) - 1);
             allCoordinates.add(b.x);
             allCoordinates.add(b.y);
             allCoordinates.add(b.z);
 
-            Vector3D c = normals.get((int) (facesNormals.get(i).z) - 1);
-            allCoordinates.add(c.x);
-            allCoordinates.add(c.y);
-            allCoordinates.add(c.z);
+            Vector3D a = normals.get((int) (facesNormals.get(i).x) - 1);
+            allCoordinates.add(a.x);
+            allCoordinates.add(a.y);
+            allCoordinates.add(a.z);
         }
         return listToFloatArray(allCoordinates);
     }

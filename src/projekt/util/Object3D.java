@@ -26,9 +26,9 @@ public class Object3D
 
     public void rotateAbsolut (float deg) {
         Matrix4 transformMatrix = new Matrix4();
-        //transformMatrix.rotateY(deg);
-        transformMatrix.rotateX(deg);
-        transformMatrix.rotateZ(deg);
+        transformMatrix.rotateY(deg);
+        //transformMatrix.rotateX(deg);
+        //transformMatrix.rotateZ(deg);
         int matrix_loc = glGetUniformLocation(shaderProgram.getId(), "transformMatrix");
         glUniformMatrix4fv(matrix_loc, true,transformMatrix.getValuesAsArray());
     }

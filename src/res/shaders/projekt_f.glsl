@@ -9,11 +9,11 @@ void main() {
     color = vec3(0.5, 0.7, 0.1);
 
     // TODO Make Light Consts editable
-    float ambientIntensity = 0.2;
-    float diffuseIntensity = 0.5;
-    float spectacularIntensity = 0.3;
-    float lightSourceIntensity = 1.5;
-    vec3 lightPos = vec3(0.3, 0.2, -0.8);
+    float ambientIntensity = 0.4;
+    float diffuseIntensity = 0.4;
+    float spectacularIntensity = 0.2;
+    float lightSourceIntensity = 3.5;
+    vec3 lightPos = vec3(0.5, -0.5, -1);
     float materialHardness = 2;
 
     float ambientLight;
