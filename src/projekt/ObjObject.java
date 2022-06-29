@@ -7,6 +7,8 @@ import projekt.util.Vector3D;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.lwjgl.opengl.GL20.glUseProgram;
+
 public class ObjObject extends Object3D {
     public List<Vector3D> vertices = new ArrayList<>();
     public List<Vector3D> normals = new ArrayList<>();
@@ -76,7 +78,6 @@ public class ObjObject extends Object3D {
      */
     public void writeVBO () {
         vaoProgram.createVbo(0, getCoordinatesArray(), 3);
-        System.out.println(getCoordinatesArray().length + " " + getPointCount() * 3);
         vaoProgram.addToPointCount(getPointCount());
         vaoProgram.createVbo(1, getNormalsArray(), 3);
     }

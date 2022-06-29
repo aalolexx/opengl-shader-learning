@@ -9,7 +9,8 @@ import projekt.util.ObjLoader;
 
 public class Projekt extends AbstractOpenGLBase {
 
-	ShaderProgram shaderProgram;
+	ShaderProgram objShaderProgram;
+	ShaderProgram pyramideShaderProgram;
 	float counter = 0;
 
 	HandmadePyramid pyramid;
@@ -21,11 +22,13 @@ public class Projekt extends AbstractOpenGLBase {
 
 	@Override
 	protected void init() {
-		shaderProgram = new ShaderProgram("projekt");
-		glUseProgram(shaderProgram.getId());
+		// Init Loaded Object
+		objShaderProgram = new ShaderProgram("projekt");
+		objObject = ObjLoader.load3DModel("./resources/monkey.obj", objShaderProgram, 0.4f);
 
-		//pyramid = new HandmadePyramid(shaderProgram);
-		objObject = ObjLoader.load3DModel("./resources/monkey.obj", shaderProgram, 0.4f);
+		// Init Handmade Pyramide
+		pyramideShaderProgram = new ShaderProgram("pyramide");
+		pyramid = new HandmadePyramid(pyramideShaderProgram);
 
 		glEnable(GL_DEPTH_TEST); // z-Buffer aktivieren
 		glEnable(GL_CULL_FACE); // backface culling aktivieren
@@ -34,15 +37,15 @@ public class Projekt extends AbstractOpenGLBase {
 	@Override
 	public void update() {
 		counter += 0.005;
-		//pyramid.rotateAbsolut(counter);
 		objObject.rotateAbsolut(counter);
+		//pyramid.rotateAbsolut(counter * -1);
 	}
 
 	@Override
 	protected void render() {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		//pyramid.draw();
 		objObject.draw();
+		pyramid.draw();
 	}
 
 	@Override

@@ -4,6 +4,8 @@ import projekt.util.Object3D;
 import projekt.util.VectorUtils;
 import lenz.opengl.ShaderProgram;
 
+import static org.lwjgl.opengl.GL20.glUseProgram;
+
 public class HandmadePyramid extends Object3D {
     public HandmadePyramid(ShaderProgram shaderProgram) {
         super(shaderProgram);
