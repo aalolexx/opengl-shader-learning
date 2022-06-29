@@ -13,7 +13,7 @@ void main() {
     float diffuseIntensity = 0.4;
     float spectacularIntensity = 0.2;
     float lightSourceIntensity = 3.5;
-    vec3 lightPos = vec3(0.5, -0.5, -1);
+    vec3 lightPos = vec3(0, 0, -1);
     float materialHardness = 2;
 
     float ambientLight;

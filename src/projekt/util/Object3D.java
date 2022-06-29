@@ -10,6 +10,7 @@ public class Object3D
 {
     public VaoProgram vaoProgram;
     public ShaderProgram shaderProgram;
+    private Matrix4 transformMatrix;
 
     public Object3D(ShaderProgram shaderProgram) {
         glUseProgram(shaderProgram.getId());
@@ -17,7 +18,8 @@ public class Object3D
         vaoProgram = new VaoProgram(shaderProgram.getId());
 
         // Pass Initial Matrix to Shader
-        rotateAbsolut(0);
+        this.transformMatrix = new Matrix4();
+        passMatrixToShader();
     }
 
     /* ****************
@@ -30,14 +32,27 @@ public class Object3D
         glDrawArrays(GL_TRIANGLES, 0, vaoProgram.getPointCount());
     }
 
-    public void rotateAbsolut (float deg) {
+    public void translate (float x, float y, float z) {
+        transformMatrix.translate(x, y, z);
+        passMatrixToShader();
+    }
+
+    public void scale (float factor) {
+        transformMatrix.scale(factor);
+        passMatrixToShader();
+    }
+
+    public void rotate (float degX, float degY, float degZ) {
+        transformMatrix.rotateX(degX);
+        transformMatrix.rotateY(degY);
+        transformMatrix.rotateZ(degZ);
+        passMatrixToShader();
+    }
+
+    private void passMatrixToShader() {
         glBindVertexArray(vaoProgram.vaoId);
-        Matrix4 transformMatrix = new Matrix4();
-        transformMatrix.rotateY(deg);
-        //transformMatrix.rotateX(deg);
-        //transformMatrix.rotateZ(deg);
         glUseProgram(shaderProgram.getId());
         int matrix_loc = glGetUniformLocation(shaderProgram.getId(), "transformMatrix");
-        glUniformMatrix4fv(matrix_loc, true,transformMatrix.getValuesAsArray());
+        glUniformMatrix4fv(matrix_loc, true, transformMatrix.getValuesAsArray());
     }
 }
