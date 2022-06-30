@@ -46,7 +46,7 @@ public class Projekt extends AbstractOpenGLBase {
 	public void update() {
 		//objObject.rotate(0, 0.01f, 0);
 		//pyramid1.rotate(0, -0.005f, 0);
-		pyramid1.rotateAbsolut(1);
+		pyramid1.rotate(0.005f, 0.005f, 0);
 		//pyramid2.rotate(-0.005f, 0, 0);
 	}
 
