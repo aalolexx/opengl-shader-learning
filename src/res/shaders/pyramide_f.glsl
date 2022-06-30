@@ -10,11 +10,11 @@ void main() {
 
     // TODO Make Light Consts editable
     float ambientIntensity = 0.4;
-    float diffuseIntensity = 0.4;
-    float spectacularIntensity = 0.2;
-    float lightSourceIntensity = 3.5;
-    vec3 lightPos = vec3(0, 0, -1);
-    float materialHardness = 2;
+    float diffuseIntensity = 0.3;
+    float spectacularIntensity = 0.3;
+    float lightSourceIntensity = 4;
+    vec3 lightPos = vec3(0.5, 0, -1);
+    float materialHardness = 5;
 
     float ambientLight;
     float diffuseLight;
@@ -43,9 +43,9 @@ void main() {
     color *= totalLight;
 
     // Show Normals for debugging (NO LIGHTING)
-    // color = faceNormal;
-    // if (color[0] < 0) color[0] *= -1;
-    // if (color[1] < 0) color[1] *= -1;
-    // if (color[2] < 0) color[2] *= -1;
+    //color = faceNormal;
+    //if (color[0] < 0) color[0] *= -1;
+    //if (color[1] < 0) color[1] *= -1;
+    //if (color[2] < 0) color[2] *= -1;
 
 }

@@ -1,9 +1,17 @@
 package projekt.util;
 
+import de.matthiasmann.twl.utils.PNGDecoder;
 import lenz.opengl.ShaderProgram;
+import org.lwjgl.opengl.GL13;
+import org.lwjgl.opengl.GL30;
 import projekt.ObjObject;
 
 import java.io.*;
+import java.nio.ByteBuffer;
+
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
+import static org.lwjgl.opengl.GL13.glActiveTexture;
 
 public class ObjLoader {
     public static ObjObject load3DModel(String objFileName, ShaderProgram shaderProgram, float scaleFactor) {

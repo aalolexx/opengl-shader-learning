@@ -9,5 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="lwjgl-glfw-javadoc" level="project" />
     <orderEntry type="library" name="apache.lang.commons" level="project" />
+    <orderEntry type="library" name="pngdecoder-1.0" level="project" />
   </component>
 </module>

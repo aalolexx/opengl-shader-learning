@@ -24,19 +24,19 @@ public class Projekt extends AbstractOpenGLBase {
 	@Override
 	protected void init() {
 		// Init Loaded Object
-		objShaderProgram = new ShaderProgram("monkey");
-		objObject = ObjLoader.load3DModel("./resources/monkey.obj", objShaderProgram, 0.25f);
+		//objShaderProgram = new ShaderProgram("monkey");
+		//objObject = ObjLoader.load3DModel("./resources/monkey.obj", objShaderProgram, 0.25f);
 
 		// Init Handmade Pyramide 1
 		pyramideShaderProgram1 = new ShaderProgram("pyramide");
 		pyramid1 = new HandmadePyramid(pyramideShaderProgram1);
-		pyramid1.translate(0.75f, 0, 0);
+		//pyramid1.translate(0.75f, 0, 0);
 
-		// Init Handmade Pyramide 2
-		pyramideShaderProgram2 = new ShaderProgram("pyramide");
-		pyramid2 = new HandmadePyramid(pyramideShaderProgram2);
-		pyramid2.translate(0, 0.75f, 0);
-		pyramid2.rotate(3.141f, 0, 0);
+		//// Init Handmade Pyramide 2
+		//pyramideShaderProgram2 = new ShaderProgram("pyramide");
+		//pyramid2 = new HandmadePyramid(pyramideShaderProgram2);
+		//pyramid2.translate(0, 0.75f, 0);
+		//pyramid2.rotate(3.141f, 0, 0);
 
 		glEnable(GL_DEPTH_TEST); // z-Buffer aktivieren
 		glEnable(GL_CULL_FACE); // backface culling aktivieren
@@ -44,17 +44,18 @@ public class Projekt extends AbstractOpenGLBase {
 
 	@Override
 	public void update() {
-		objObject.rotate(0, 0.01f, 0);
-		pyramid1.rotate(0, -0.005f, 0);
-		pyramid2.rotate(-0.005f, 0, 0);
+		//objObject.rotate(0, 0.01f, 0);
+		//pyramid1.rotate(0, -0.005f, 0);
+		pyramid1.rotateAbsolut(1);
+		//pyramid2.rotate(-0.005f, 0, 0);
 	}
 
 	@Override
 	protected void render() {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		objObject.draw();
+		//objObject.draw();
 		pyramid1.draw();
-		pyramid2.draw();
+		//pyramid2.draw();
 	}
 
 	@Override

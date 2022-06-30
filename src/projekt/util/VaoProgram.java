@@ -10,7 +10,7 @@ import static org.lwjgl.opengl.GL30.*;
  */
 public class VaoProgram {
     int shaderProgramId;
-    int vaoId;
+    public int vaoId;
     int pointCount = 0;
     Map<Integer, VboProgram> vboList = new HashMap<>();
 

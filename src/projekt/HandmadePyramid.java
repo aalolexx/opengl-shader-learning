@@ -1,12 +1,17 @@
 package projekt;
 
+import projekt.util.ObjLoader;
 import projekt.util.Object3D;
 import projekt.util.VectorUtils;
 import lenz.opengl.ShaderProgram;
 
-import static org.lwjgl.opengl.GL20.glUseProgram;
+import java.io.IOException;
+
+import static org.lwjgl.opengl.GL20.*;
 
 public class HandmadePyramid extends Object3D {
+    Texture texture;
+
     public HandmadePyramid(ShaderProgram shaderProgram) {
         super(shaderProgram);
         init();
@@ -87,5 +92,21 @@ public class HandmadePyramid extends Object3D {
                 leftNormal[0], leftNormal[1], leftNormal[2],
         };
         vaoProgram.createVbo(1, pyramideNormals, 3);
+
+        // Texture
+        /*float[] texCoords = new float []{
+                0, 1f, 1f, 1f, 0.5f, 0,
+                0, 1f, 1f, 1f, 0.5f, 0,
+                0, 1f, 1f, 1f, 0.5f, 0,
+                0, 1f, 1f, 1f, 0.5f, 0,
+        };*/
+        float[] texCoords = new float []{
+                1f, 1f, 1f, 1f, 1f, 1f,
+                1f, 1f, 1f, 1f, 1f, 1f,
+                1f, 1f, 1f, 1f, 1f, 1f,
+                1f, 1f, 1f, 1f, 1f, 1f,
+        };
+        //vaoProgram.createVbo(2, texCoords, 2);
+        //texture = new Texture("./resources/marble_tex/test.png", texCoords, vaoProgram, shaderProgram);
     }
 }
